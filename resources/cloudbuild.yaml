@@ -1,0 +1,10 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['pull', 'docker.io/nginx']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['tag', 'nginx:latest', '${_ARTIFACT_REGISTRY_PATH_}/nginx:latest']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '${_ARTIFACT_REGISTRY_PATH_}/nginx:latest']
+serviceAccount: '${_SERVICE_ACCOUNT_EMAIL_}'
+options:
+  logging: CLOUD_LOGGING_ONLY
